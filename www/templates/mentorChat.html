@@ -1,0 +1,21 @@
+<ion-view view-title="login">
+  <ion-header-bar class="bar-stable">
+        <h1 class="title">Chat with {{menteeName}}</h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <ul class="collection">
+        <div ng-repeat="m in messages">
+          <li>{{m.message}} from {{m.from}} <li>
+        </div>
+    </ul>
+
+    <div>
+      <form ng-submit="send()">
+       <input ng-model="messaging.messageContent" type="text" placeholder="Type your message" />
+       <button type="submit">Send</button>
+      </form>
+    </div>
+
+
+  </ion-content>
+</ion-view>

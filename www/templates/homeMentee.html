@@ -1,0 +1,11 @@
+<ion-view view-title="login">
+	<ion-header-bar class="bar-stable">
+        <h1 class="title">Chats</h1>
+	      </ion-header-bar>
+
+	    <ion-content class="padding">
+	    <ul class='list' ng-repeat="m in chatMentors">
+	    	<li ng-click='gotoConvo(m)' class='item'>{{m.username}}</li>
+	    </ul>
+  </ion-content>
+</ion-view>
