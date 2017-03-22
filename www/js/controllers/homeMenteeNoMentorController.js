@@ -1,6 +1,6 @@
 angular.module('homeTeeNoTorController',[])
 
-.controller('homeTeeNoTorCtrl', function($scope, $ionicDB, $ionicUser){
+.controller('homeTeeNoTorCtrl', function($scope, $ionicDB, $ionicUser, $location){
 
 	$ionicDB.connect();
 	$scope.welcomeMsg = "Hi, " + $ionicUser.details.username + "!";
@@ -8,6 +8,10 @@ angular.module('homeTeeNoTorController',[])
 
 	var mentees = $ionicDB.collection('mentees');
 	var mentors = $ionicDB.collection('mentors');
+
+	$scope.$on('$ionicView.enter', function() {
+    	getData();	
+  	});
 
 	//get all mentors who have not yet been assigned a mentee
 	function getData(){
@@ -39,8 +43,7 @@ angular.module('homeTeeNoTorController',[])
 		});
 		
 		//go to chat window here
+		$location.path('/menteeHome');
 	}
 
-	//initialize page with everything
-	getData();
 });

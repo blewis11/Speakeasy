@@ -103,6 +103,20 @@ angular.module('starter', ['ionic', 'ionic.cloud', 'starter.welcome',
       controller: 'mentorHomeCtrl'
    })
 
+   .state('noMentor', {
+      cache: false,
+      url: '/noMentor',
+      templateUrl: 'templates/homeMenteeNoMentor.html',
+      controller: 'homeTeeNoTorCtrl'
+   })
+
+   .state('noMentee', {
+      cache: false,
+      url:'/noMentee',
+      templateUrl: 'templates/homeMentorNoMentee.html',
+      controller: 'homeTorNoTeeCtrl'
+   })
+
   .state('menteeChat', {
         cache: false,
         url: '/menteeChat',

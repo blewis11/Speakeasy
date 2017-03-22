@@ -1,11 +1,12 @@
-<ion-view>
-  <ion-header-bar class="bar-stable">
-        <h1 class="title">Chats</h1>
-    </ion-header-bar>
+<ion-view id='mentorHome'>
     
   <ion-content class="padding">
+  <h1 class="title chatTitle">Chats</h1>
+
     <ul class='list' ng-repeat="m in chatMentees">
-		<li ng-click='gotoConvo(m)' class='item'>{{m.username}}</li>
+    	<div class='row'>
+			<li ng-click='gotoConvo(m)' class='item chatItem'>{{m.username}}</li>
+		</div>
 	</ul>
 
   </ion-content>

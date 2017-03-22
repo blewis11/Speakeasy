@@ -1,6 +1,6 @@
 angular.module('starter.mentorChat',[])
 
-.controller('mentorChatCtrl', function($rootScope, $scope, $http, $location, $ionicUser, $ionicAuth, NavigatorParameters, $pubnubChannel, Pubnub){
+.controller('mentorChatCtrl', function($ionicScrollDelegate, $rootScope, $scope, $http, $location, $ionicUser, $ionicAuth, NavigatorParameters, $pubnubChannel, Pubnub){
 	var params = NavigatorParameters.getParameters();
 	$scope.channel = $ionicUser.details.email + '-' + params.email;
 	$scope.menteeName = params.username;
@@ -20,11 +20,31 @@ angular.module('starter.mentorChat',[])
 	   triggerEvents: ['message', 'presence', 'status']
 	});
 
+	$scope.$on('$ionicView.enter', function() {
+      $ionicScrollDelegate.scrollBottom();
+  	})
+
 	$scope.send = function(){
 		console.log("Publishing: " + $scope.messaging.messageContent);
 		$scope.messages.$publish({message: $scope.messaging.messageContent , from: $ionicUser.details.username});
 		$scope.messaging.messageContent = '';
-		console.log($scope.messages);
+		$ionicScrollDelegate.scrollBottom(true);
 	}
+
+	$scope.leftOrRight = function(from){
+		if (from == $ionicUser.details.username){
+			return 'pullRight';
+		} else {
+			return 'pullLeft';
+		}
+	}
+
+	$scope.bubbleDirection = function(from){
+		if (from == $ionicUser.details.username){
+			return 'talk-bubble tri-right right-top'
+		} else {
+			return 'talk-bubble tri-left left-top'
+		}
+	}	
 	
 });

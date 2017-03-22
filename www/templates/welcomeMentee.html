@@ -1,21 +1,73 @@
-<ion-view view-title="login">
-    <ion-header-bar class="bar-stable">
-        <h1 class="title">Mentee Login</h1>
-      </ion-header-bar>
+<ion-view view-title="login" id='welcomeMentee'>
+   
 <ion-content class="padding">
-    <label class="item item-input">
-      <span class="input-label">Email</span>
-      <input name="email" ng-model="user.email" type="email">
-    </label>
-    <label class="item item-input">
-      <span class="input-label">Password</span>
-      <input name="password" ng-model="user.password" type="password">
-    </label>
+  
+  <div class='row'>
+    <img id='welcomeMenteeTitle' src='../img/logo_logo_white.png'>
+  </div>
 
-    <button class="button button-energized" ng-click="login()">
-      Login
-    </button>
+  <div class='row buttonRow'>
+    <!-- <p>Don't have an account? <a href='#/signupMentee'>Sign up here</a> -->
+    <div class='col'>
+      <button class='button' ng-click='gotoLogin()' ng-class='loginButtonClass' >Login</button>
+    </div>
+    <div class='col'>
+      <button ng-class='registerButtonClass' ng-click='gotoRegister()' class='button'>Register</button>
+    </div>
+  </div>
 
-    <p>Don't have an account? <a href='#/signupMentee'>Sign up here</a>
+<ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false">
+ <ion-slide>
+    <div class='row'>
+      <label class="item item-input emailInput">
+        <span class="input-label">Email</span>
+        <input name="email" ng-model="user.email" type="email">
+      </label>
+    </div>
+
+    <div class='row'>
+      <label class="item item-input pwdInput">
+        <span class="input-label">Password</span>
+        <input name="password" ng-model="user.password" type="password">
+      </label>
+    </div>
+
+    <div class='row buttonRow' ng-click="login()">
+      <button class="button loginButton">
+        Lets Talk! <i><span class='ion-ios-arrow-thin-right'></span></i>
+      </button>
+    </div>
+  </ion-slide>
+
+  <ion-slide>
+    <div class='row'>
+      <label class="item item-input usernameInput">
+        <span class="input-label">Username</span>
+        <input name="password" ng-model="userReg.username" type="text">
+      </label>
+    </div>
+    
+    <div class='row'>
+      <label class="item item-input emailInput">
+        <span class="input-label">Email</span>
+        <input name="email" ng-model="userReg.email" type="email">
+      </label>
+    </div>
+
+    <div class='row'>
+      <label class="item item-input pwdInput">
+        <span class="input-label">Password</span>
+        <input name="password" ng-model="userReg.password" type="password">
+      </label>
+    </div>
+
+    <div class='row buttonRow' ng-click="signup()">
+      <button class="button loginButton">
+        Sign me up! <i><span class='ion-ios-arrow-thin-right'></span></i>
+      </button>
+    </div><address></address>
+
+  </ion-slide>
+
   </ion-content>
 </ion-view>

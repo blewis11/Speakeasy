@@ -5,6 +5,10 @@ angular.module('starter.menteeHome',[])
 		$location.path('/welcomeMentee')
 	}
 
+	$scope.$on('$ionicView.enter', function() {
+    	getData();	
+  	});
+
 	$scope.chatMentors = [];
 
 	$ionicDB.connect();
@@ -22,6 +26,7 @@ angular.module('starter.menteeHome',[])
 
 
 	$scope.gotoConvo = function(mentor){
+		console.log("gotoconvo");
 		var data = {
 			chattingTo : mentor
 		}
@@ -29,5 +34,5 @@ angular.module('starter.menteeHome',[])
 		$location.path('/menteeChat');
 	}
 
-	getData();
+	
 });

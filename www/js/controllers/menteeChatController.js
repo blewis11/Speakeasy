@@ -1,6 +1,6 @@
 angular.module('starter.menteeChat',[])
 
-.controller('menteeChatCtrl', function($state, $scope, $location, $ionicUser, $ionicDB, NavigatorParameters, $pubnubChannel, Pubnub){
+.controller('menteeChatCtrl', function($ionicPopup, $ionicScrollDelegate, $state, $scope, $location, $ionicUser, $ionicDB, NavigatorParameters, $pubnubChannel, Pubnub){
 	$scope.messaging = {};
 
 	Pubnub.init({
@@ -24,11 +24,16 @@ angular.module('starter.menteeChat',[])
 	   triggerEvents: ['message', 'presence', 'status']
 	});
 
+	$scope.$on('$ionicView.enter', function() {
+      $ionicScrollDelegate.scrollBottom();
+  	})
+
 	$scope.send = function(){
 		console.log("Publishing: " + $scope.messaging.messageContent);
-		$scope.messages.$publish({message: $scope.messaging.messageContent , from: $ionicUser.details.username});
+		$scope.messages.$publish({message: $scope.messaging.messageContent , from: $ionicUser.details.username, date: new Date()});
 		$scope.messaging.messageContent = '';
-		console.log($scope.messages);
+		$ionicScrollDelegate.resize()
+		$ionicScrollDelegate.scrollBottom(true);
 	}
 
 	$scope.endConvo = function(){
@@ -57,7 +62,33 @@ angular.module('starter.menteeChat',[])
 		});
 
 		//go back to welcome page, now reset with mentors to pick from 
-		$location.path('/menteeHome');
+		
+	   var alertPopup = $ionicPopup.alert({
+	     title: 'Chat Ended',
+	     template: 'We hope you had a nice talk with ' + $scope.mentorName + '! Have a wonderful day.' 
+	   });
+
+	   alertPopup.then(function(res) {
+	    $location.path('/noMentor');
+	   });
+	  }
+		
+
+
+	$scope.leftOrRight = function(from){
+		if (from == $ionicUser.details.username){
+			return 'pullRight';
+		} else {
+			return 'pullLeft';
+		}
+	}	
+
+	$scope.bubbleDirection = function(from){
+		if (from == $ionicUser.details.username){
+			return 'talk-bubble tri-right right-top'
+		} else {
+			return 'talk-bubble tri-left left-top'
+		}
 	}
 
 });

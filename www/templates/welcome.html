@@ -1,11 +1,31 @@
-<ion-view view-title="main">
+<ion-view view-title="main" id='welcomePage'>
   <ion-content class="padding">
-    <h2>Please select one of the following options<h2>
-    <button class="button button-energized" ng-click='gotoMentee()'>
-	  Mentee
+
+  <div class='row'>
+  	<div class='col col-center'>
+  		<img id='title' src='../img/logo_icon_white.png'>
+  	</div>
+  </div>
+
+  <div class='row'>
+    <h4 class='welcome'>Hi There! Welcome to Speakeasy<h4>
+  </div>
+
+  <div class='row'>
+    <h4 class='welcome'>Begin by Selecting Your Role Below<h4>
+  </div>
+
+  <div class='row'>
+    <button class="button welcomeButton" ng-click='gotoMentee()'>
+	  I Want to Talk
 	</button>
-   <button class="button button-energized" ng-click='gotoMentor()'>
-	  Mentor
+  </div>
+
+  <div class='row'>
+   <button class="button welcomeButton" ng-click='gotoMentor()'>
+	  I'm a Mentor
 	</button>
+  </div>
+
   </ion-content>
 </ion-view>

@@ -1,14 +1,19 @@
-<ion-view>
-		<ion-header-bar class="bar-stable">
-        <h1 class="title">{{welcomeMsg}}</h1>
-	      </ion-header-bar>
-	    <ion-content class="padding">
-			<h5>Looks like you aren't yet assigned a mentor, make your selection from the following list:</h1>
-			<div ng-repeat="m in mentors">
-				<h1>{{m.username}}</h1>
-				<button class="button button-balanced" ng-click='assign(m)'>
-				  Choose Me
+<ion-view id='noMentor'>
+ <ion-content class="padding">
+	<div class='row'>
+		<h1 class="mainText titleText">{{welcomeMsg}}</h1>
+	</div>
+
+		<div class='row'>
+		<h5 class='mainText'>Looks like you aren't yet assigned a mentor, make your selection from the following list:</h1>
+		</div>
+
+		<div ng-repeat="m in mentors">
+			<div class='mentorRow'>
+				<button class="button mButton" ng-click='assign(m)'>
+				  {{m.username}}
 				</button>
 			</div>
+		</div>
   </ion-content>
 </ion-view>

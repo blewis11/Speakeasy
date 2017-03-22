@@ -1,21 +1,34 @@
-<ion-view view-title="login">
+<ion-view view-title="login" id='mentorChat'>
   <ion-header-bar class="bar-stable">
         <h1 class="title">Chat with {{menteeName}}</h1>
   </ion-header-bar>
-  <ion-content class="padding">
+
+  <ion-content class="padding has-footer shorter">
     <ul class="collection">
         <div ng-repeat="m in messages">
-          <li>{{m.message}} from {{m.from}} <li>
+         <div ng-class='leftOrRight(m.from)'>
+            <div ng-class='bubbleDirection(m.from) 'class="message talk-bubble tri-right left-top">
+              <div class='talktext'>
+                <li>{{m.message}}</li>
+              </div>
+            </div>
+          </div>
         </div>
     </ul>
 
-    <div>
-      <form ng-submit="send()">
-       <input ng-model="messaging.messageContent" type="text" placeholder="Type your message" />
-       <button type="submit">Send</button>
-      </form>
-    </div>
-
-
   </ion-content>
+
+     <ion-footer-bar align-title="left" class="footer">
+        <div class='row'>
+          <div class='col'>
+            <form ng-submit="send()">
+            <input class='textInput' ng-model="messaging.messageContent" type="text" placeholder="Type your message" />
+          </div>
+          <div class='col'>
+             <button class='button send' type="submit">Send</button>
+          </div>
+            </form>
+          </div>
+        </div>
+      </ion-footer-bar>
 </ion-view>
